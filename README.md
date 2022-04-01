@@ -9,6 +9,7 @@
 *   NOTE! Heavily WIP, do things at your own risk
 
 ## My Setup
+![]("assets/home.png")
 * Os: Artix Linux(openrc)
 * Wm: AwesomeWM
 * Shell: zsh
