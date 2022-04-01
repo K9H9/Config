@@ -1,8 +1,8 @@
-## My Configuration files
-* [General Info] (#general-info)
-* [My Setup](#my-setup)
-* [Dependencies] (#dependencies)
-* [Setup](#setup)
+### My Configuration files
+- [General Info](#general-info)
+- [My Setup](#my-setup)
+- [Dependencies](#dependencies)
+- [Setup](#setup)
 
 ## General Info
 *   These are config files for the softwares I use
