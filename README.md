@@ -9,7 +9,8 @@
 *   NOTE! Heavily WIP, do things at your own risk
 
 ## My Setup
-![]("assets/home.png")
+![Home](assets/home.png)
+![Home](assets/home1.png)
 * Os: Artix Linux(openrc)
 * Wm: AwesomeWM
 * Shell: zsh
