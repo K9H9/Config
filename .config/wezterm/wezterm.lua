@@ -8,7 +8,8 @@ return {
     harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
     font_size = 15,
     color_scheme = "Gruvbox Dark",
-    window_background_image = "/home/koho/.config/awesome/images/gr-leaves.jpg",
+    window_background_opacity = 1.0,
+    -- window_background_image = "/home/koho/.config/awesome/images/gr-leaves.jpg",
     keys = {
         -- This will create a new split and run the `top` program inside it
         {key="ä", mods="CTRL", action=wezterm.action{SplitVertical={}}},
@@ -44,7 +45,7 @@ return {
     },
     inactive_pane_hsb = {
         saturation = 0.5,
-        brightness = 0.5,
+        brightness = 0.7,
         hue = 0.5,
     },
     enable_tab_bar = false,
