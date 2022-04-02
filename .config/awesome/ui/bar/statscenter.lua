@@ -116,9 +116,6 @@ awful.screen.connect_for_each_screen(function(s)
                 },
                 spacing = 30,
                 {
-                  {
-                    widget = require("ui.widgets.fetch")
-                  },
                   widget = wibox.container.background,
                   bg = beautiful.darker_bg,
                   shape = function(cr, width, height)
