@@ -67,7 +67,9 @@ cr() {
 }
 #git
 dots() {
-  config add $1; config commit -m $2; config push origin master
+  config add $1
+  config commit -m $2
+  config push origin master
 }
 #--------------------------------------------------------------------------
 gaiggi() {
