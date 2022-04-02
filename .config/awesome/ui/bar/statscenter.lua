@@ -28,7 +28,7 @@ local app_discord = app_factory(beautiful.discord,"discord")
 local site_gmail = app_factory(beautiful.gmail,"firefox https://mail.google.com")
 local site_github = app_factory(beautiful.github, "firefox https://github.com")
 local app_code = app_factory(beautiful.vscode,"code")
-local app_firefox = app_factory(beautiful.firefox,"firefox")
+local app_firefox = app_factory(beautiful.brave,"brave")
 local app_terminal = app_factory(beautiful.spotify,"spotify")
 local site_artix = app_factory(beautiful.distro_logo, "firefox https://wiki.archlinux.org/")
 

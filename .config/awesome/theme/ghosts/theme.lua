@@ -40,8 +40,8 @@ theme.vscode = gears.color.recolor_image(theme.vscode, xrdb.color7)
 theme.spotify = gfs.get_configuration_dir() .. "icons/spotify.svg"
 theme.spotify = gears.color.recolor_image(theme.spotify, xrdb.color7)
 
-theme.firefox = gfs.get_configuration_dir() .. "icons/firefox.svg"
-theme.firefox = gears.color.recolor_image(theme.firefox, xrdb.color7)
+theme.brave = gfs.get_configuration_dir() .. "icons/brave.svg"
+theme.brave = gears.color.recolor_image(theme.brave, xrdb.color7)
 
 theme.distro_logo = gfs.get_configuration_dir() .. "icons/logo.svg"
 theme.distro_logo = gears.color.recolor_image(theme.distro_logo, xrdb.foreground)
