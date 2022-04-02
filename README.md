@@ -36,7 +36,7 @@ sudo pacman -S playerctl brightnessctl wezterm rofi flameshot lua53 luarocks pul
 ```
 ```shell
 # Change AUR-helper if needed
-yay -Sy picom-ibwaghan-git awesome-git inotify-tools alsa-utils alsa-tools wireless_tools jq checkupdates brave-bin nerd-font-complete --needed
+yay -Sy picom-ibwaghan-git awesome-git inotify-tools alsa-utils alsa-tools wireless_tools jq checkupdates brave-bin nerd-font-complete iw --needed
 ```
 
 ## Installation
