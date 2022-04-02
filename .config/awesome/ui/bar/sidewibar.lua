@@ -401,7 +401,6 @@ awful.screen.connect_for_each_screen(function(s)
                     right = dpi(2),
                     widget = wibox.container.margin
                 }),
-                s.mypromptbox
             },
             {
                 boxed_widget3({
@@ -431,7 +430,7 @@ awful.screen.connect_for_each_screen(function(s)
                                     right = dpi(2),
                                     widget = wibox.container.margin
                                 }),
-                                spacing = 5,
+                                spacing = 10,
                                 boxed_widget({
                                     layoutbox,
                                     spacing = dpi(1),
@@ -440,7 +439,6 @@ awful.screen.connect_for_each_screen(function(s)
                                 helpers.horizontal_pad(4),
                                 layout = wibox.layout.fixed.vertical
                             },
-                            bottom = dpi(3),
                             widget = wibox.container.margin
                         },
                         left = dpi(1),

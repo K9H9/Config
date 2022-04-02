@@ -35,7 +35,7 @@ local prompt_button = function(icon)
     }
 end
 
-local buttons = wibox.widget {
+local menu = wibox.widget {
     spacing = 8,
     forced_num_cols = 2,
     forced_num_rows = 1,
@@ -58,7 +58,7 @@ awful.screen.connect_for_each_screen(function(s)
         {
             {
                 {
-                    buttons,
+                    menu,
                     layout = wibox.layout.fixed.horizontal,
                     spacing = 10
                 },
