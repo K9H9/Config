@@ -7,6 +7,7 @@ return {
     font = wezterm.font("Iosevka Nerd Font", {weight = "Regular", italic = false}),
     harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
     font_size = 15,
+    window_background_image = "/home/koho/.config/wezterm/bg.jpeg",
     color_scheme = "Gruvbox Dark",
     keys = {
         -- This will create a new split and run the `top` program inside it
@@ -28,7 +29,6 @@ return {
         
     },
     mouse_bindings = {
-        -- Ctrl-click will open the link under the mouse cursor
         {
           event={Up={streak=1, button="Left"}},
           mods="CTRL",
