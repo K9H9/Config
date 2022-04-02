@@ -2,8 +2,9 @@
 - [General Info](#general-info)
 - [My Setup](#my-setup)
 - [Dependencies](#dependencies)
-- [Setup](#setup)
-  
+- [Installation](#installation)
+- [Notes](#notes)
+  - [Thanks to:](#thanks-to)
 ## General Info
 *   These are config files for the softwares I use
 
@@ -30,8 +31,13 @@ yay -Syu picom-ibwaghan-git awesome-git inotify-tools alsa-utils alsa-tools wire
 ```
 
 
-
-## Setup
+## Installation
 * Download listed dependencies
+
+## Notes
+### Thanks to:
+* [nuxshed](https://github.com/nuxshed/dotfiles)
+* [rxyhn](https://github.com/rxyhn)
+* [JavaCafe01](https://github.com/JavaCafe01)
 
 
