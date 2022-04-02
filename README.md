@@ -3,8 +3,10 @@
 - [My Setup](#my-setup)
 - [Dependencies](#dependencies)
 - [Installation](#installation)
+  - [Download listed dependencies](#download-listed-dependencies)
+  - [Begin Installation](#begin-installation)
 - [Notes](#notes)
-  - [Thanks to:](#thanks-to)
+  - [Thanks to](#thanks-to)
 ## General Info
 *   These are config files for the softwares I use
 
@@ -32,10 +34,17 @@ yay -Syu picom-ibwaghan-git awesome-git inotify-tools alsa-utils alsa-tools wire
 
 
 ## Installation
-* Download listed dependencies
+### Download listed dependencies
+* See [Dependencies](#dependencies)
+### Begin Installation
+* Clone this repository
+```shell
+git clone https://github.com/K9H9/Config $HOME/awesome-config
+
+```
 
 ## Notes
-### Thanks to:
+### Thanks to
 * [nuxshed](https://github.com/nuxshed/dotfiles)
 * [rxyhn](https://github.com/rxyhn)
 * [JavaCafe01](https://github.com/JavaCafe01)
