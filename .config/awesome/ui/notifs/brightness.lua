@@ -12,11 +12,11 @@ local active_color_1 = {
     type = 'linear',
     from = {0, 0},
     to = {200, 50}, -- replace with w,h later
-    stops = {{0, beautiful.xcolor6}, {0.50, beautiful.xcolor4}}
+    stops = {{0, beautiful.xcolor6}, {0.50, beautiful.xcolor10}}
 }
 
 local bright_icon = wibox.widget {
-    markup = "<span foreground='" .. beautiful.xcolor4 .. "'><b> </b></span>",
+    markup = "<span foreground='" .. beautiful.xcolor10 .. "'><b> </b></span>",
     align = 'center',
     valign = 'center',
     font = beautiful.font_name .. '22',

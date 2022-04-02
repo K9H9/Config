@@ -12,11 +12,11 @@ local active_color_1 = {
     type = 'linear',
     from = {0, 0},
     to = {200, 50}, -- replace with w,h later
-    stops = {{0, beautiful.xcolor6}, {0.50, beautiful.xcolor4}}
+    stops = {{0, beautiful.xcolor6}, {0.50, beautiful.xcolor1}}
 }
 
 local volume_icon = wibox.widget {
-    markup = "<span foreground='" .. beautiful.xcolor4 .. "'><b> </b></span>",
+    markup = "<span foreground='" .. beautiful.xcolor1 .. "'><b> </b></span>",
     align = 'center',
     valign = 'center',
     font = beautiful.font_name .. '22',
@@ -92,9 +92,9 @@ local hide_volume_adjust = gears.timer {
 awesome.connect_signal("signal::volume", function(vol, muted)
     volume_bar.value = vol
     if muted or vol == 0 then
-        volume_icon.markup = "<span foreground='" .. beautiful.xcolor4 .. "'><b>ﳌ</b></span>"
+        volume_icon.markup = "<span foreground='" .. beautiful.xcolor1 .. "'><b>ﳌ</b></span>"
     else
-        volume_icon.markup = "<span foreground='" .. beautiful.xcolor4 .. "'><b></b></span>"
+        volume_icon.markup = "<span foreground='" .. beautiful.xcolor1 .. "'><b></b></span>"
     end
 
     if volume_adjust.visible then
