@@ -33,6 +33,16 @@ end)
 local theme = "ghosts"
 beautiful.init(gfs.get_configuration_dir() .. "theme/" .. theme .. "/theme.lua")
 
+local nice = require("nice")
+nice {
+    titlebar_font = beautiful.font_name .. "10",
+    titlebar_items = {
+        left = "",
+        right = {"minimize", "maximize", "close"},
+        middle = "title",
+    }
+}
+
 -- Import Configuration
 require("configuration")
 local function set_wallpaper(s)
@@ -167,41 +177,41 @@ collectgarbage("setstepmul", 1000)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 
-client.connect_signal("request::titlebars", function(c)
-    local top_titlebar = awful.titlebar(c, {
-        height  = 20,
-    })
+-- client.connect_signal("request::titlebars", function(c)
+--     local top_titlebar = awful.titlebar(c, {
+--         height  = 20,
+--     })
 
-    -- buttons for the titlebar
-    local buttons = gears.table.join(
-        awful.button({ }, 1, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.move(c)
-        end),
-        awful.button({ }, 3, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.resize(c)
-        end)
-    )
+--     -- buttons for the titlebar
+--     local buttons = gears.table.join(
+--         awful.button({ }, 1, function()
+--             c:emit_signal("request::activate", "titlebar", {raise = true})
+--             awful.mouse.client.move(c)
+--         end),
+--         awful.button({ }, 3, function()
+--             c:emit_signal("request::activate", "titlebar", {raise = true})
+--             awful.mouse.client.resize(c)
+--         end)
+--     )
 
-    top_titlebar : setup {
-        { -- Left
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-    }
-end)
+--     top_titlebar : setup {
+--         { -- Left
+--             layout  = wibox.layout.fixed.horizontal
+--         },
+--         { -- Middle
+--             { -- Title
+--                 align  = "center",
+--                 widget = awful.titlebar.widget.titlewidget(c)
+--             },
+--             buttons = buttons,
+--             layout  = wibox.layout.flex.horizontal
+--         },
+--         { -- Right
+--             awful.titlebar.widget.closebutton    (c),
+--             layout = wibox.layout.fixed.horizontal()
+--         },
+--         layout = wibox.layout.align.horizontal
+--     }
+-- end)
 
 -- EOF ------------------------------------------------------------------------
