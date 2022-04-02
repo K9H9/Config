@@ -232,7 +232,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = wibox({
         position = beautiful.wibar_position,
-        screen = s,
+        screen = screen.primary,
         type = "dock",
         ontop = true,
         width = beautiful.wibar_width,
