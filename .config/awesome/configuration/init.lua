@@ -9,7 +9,7 @@ require("configuration.autostart")
 terminal = "wezterm"
 editor = "code"
 editor_cmd = editor
-browser = "firefox"
+browser = "Brave-browser"
 filemanager = "thunar"
 discord = "discord"
 launcher = "rofi -show drun"

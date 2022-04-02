@@ -96,6 +96,9 @@ awful.keyboard.append_global_keybindings({
   
     awful.key({modkey, "Control"}, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
+    awful.key({"Control"}, "r", function()
+                awful.spawn.with_shell("brave") end,
+              {description = "browser", group = "utils"}),
     awful.key({modkey, "Shift"}, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"})
 
