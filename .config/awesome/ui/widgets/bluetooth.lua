@@ -35,7 +35,7 @@ bluetoothtip:add_to_object(bluetooth)
 bluetoothtip.text = ""
 
 
-awful.widget.watch("/bin/sh -c /home/koho/Code/scripts/awesome_utils/bluetooth.sh", 1, function(widget, stdout)
+awful.widget.watch("/bin/sh -c $HOME/.config/awesome/signal/awesome_utils/bluetooth.sh", 1, function(widget, stdout)
   local up = stdout
   bluetoothtip.text = up
   if (string.find(up, "off")) then

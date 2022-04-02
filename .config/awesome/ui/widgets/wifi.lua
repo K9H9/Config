@@ -34,7 +34,7 @@ wifitooltip.mode = "inside"
 wifitooltip:add_to_object(wifi)
 wifitooltip.text = ""
 
-awful.widget.watch("/bin/sh -c /home/koho/Code/scripts/awesome_utils/wifi.sh", 1, function(widget, stdout)
+awful.widget.watch("/bin/sh -c $HOME/.config/awesome/signal/awesome_utils/wifi.sh", 1, function(widget, stdout)
   local up = stdout
   wifitooltip.text = up
   if (string.find(up, "Not")) then

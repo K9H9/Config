@@ -35,7 +35,7 @@ updatetip:add_to_object(update)
 updatetip.text = ""
 
 
-awful.widget.watch("/bin/sh -c /home/koho/Code/scripts/awesome_utils/updates.sh", 1, function(widget, stdout)
+awful.widget.watch("/bin/sh -c $HOME/.config/awesome/signal/awesome_utils/updates.sh", 1, function(widget, stdout)
   local up = stdout
   updatetip.text = up
   if (string.find(up, "No")) then
