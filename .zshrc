@@ -19,7 +19,6 @@ source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighti
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source $ZSH/oh-my-zsh.sh
-source ~/Code/scripts/screen_starter.sh
 source ~/Code/scripts/dotfile.sh 
 #---------------------------------------------------------------------------
 #Aliases
