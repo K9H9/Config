@@ -365,7 +365,7 @@ local function grab_password()
             end
 
             -- Debug
-            naughty.notify { title = 'You pressed:', text = key }
+            -- naughty.notify { title = 'You pressed:', text = key }
         end,
         exe_callback = function(input)
             -- Check input

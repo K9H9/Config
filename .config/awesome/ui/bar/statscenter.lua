@@ -85,7 +85,7 @@ local calendar = wibox.widget {
 
 awful.screen.connect_for_each_screen(function(s)
   s.mypopup = wibox({
-        screen = 3,
+        screen = screen.primary,
         type = "dock",
         ontop = true,
         x = 1920 - (beautiful.panel_width)-dpi(25),

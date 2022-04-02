@@ -21,7 +21,7 @@ local menubutton = function(icon, exec)
       end,
     }
 end
-local execute_button = function(icon, exec)
+local execute_button = function(icon, func)
     return gooey.make_button {
       icon = icon,
       bg = beautiful.darker_bg,
@@ -30,7 +30,20 @@ local execute_button = function(icon, exec)
       height = 54,
       margins = 10,
       exec = function()
-        lock_screen_show()
+        func()
+      end,
+    }
+end
+local prompt_button = function(icon)
+    return gooey.make_button {
+      icon = icon,
+      bg = beautiful.darker_bg,
+      hover = true,
+      width = 54,
+      height = 54,
+      margins = 10,
+      exec = function()
+        awesome.emit_signal("prompt::show")
       end,
     }
 end
@@ -40,14 +53,14 @@ local menu = wibox.widget {
     spacing = 8,
     forced_num_cols = 1,
     forced_num_rows = 4,
-    menubutton(beautiful.shutdown, "sudo openrc-shutdown -p now"),
+    prompt_button(beautiful.shutdown),
     menubutton(beautiful.logout, "awesome-client 'awesome.quit()'"),
     menubutton(beautiful.refresh_icon, "sudo reboot"),
-    execute_button(beautiful.lock)
+    execute_button(beautiful.lock, lock_screen_show)
 }
 awful.screen.connect_for_each_screen(function(s)
     s.powermenu = wibox({
-        screen = 3,
+        screen = screen.primary,
         type = "dock",
         ontop = true,
         x = -600,
@@ -55,7 +68,7 @@ awful.screen.connect_for_each_screen(function(s)
         width = dpi(145*2),
         height = dpi(208),
         visible = true
-      })
+    })
 
     s.powermenu.widget = wibox.widget {
         {
@@ -96,6 +109,8 @@ awful.screen.connect_for_each_screen(function(s)
             s.powermenu.x = pos
         end
     }
+
+    
 
     awesome.connect_signal("powermenu::open", function()
         if s.powermenu.x == -600 then

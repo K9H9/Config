@@ -13,7 +13,7 @@ local rubato = require("module.rubato")
 
 awful.screen.connect_for_each_screen(function(s)
   s.mypopup1 = wibox({
-        screen = 3,
+        screen = screen.primary,
         type = "dock",
         ontop = true,
         x = 1920 - (beautiful.panel_width) - dpi(25),
@@ -87,9 +87,9 @@ awful.screen.connect_for_each_screen(function(s)
                     shape = function(cr, width, height)
                       gears.shape.rounded_rect(cr, width, height, 6)
                     end,
-                },
-                layout = wibox.layout.fixed.vertical,
-                spacing = 20,
+                  },
+                  layout = wibox.layout.fixed.vertical,
+                  spacing = 20,
             },
             margins = 20,
             widget = wibox.container.margin

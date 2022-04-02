@@ -81,7 +81,7 @@ local cal = wibox.widget {
 
 awful.screen.connect_for_each_screen(function(s)
     s.calendar = wibox({
-        screen = 3,
+        screen = screen.primary,
         type = "dock",
         ontop = true,
         x = beautiful.wibar_width + dpi(20),
