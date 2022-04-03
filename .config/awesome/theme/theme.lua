@@ -59,6 +59,14 @@ theme.logout = gears.color.recolor_image(theme.logout, xrdb.foreground)
 theme.lock = gfs.get_configuration_dir() .. "icons/lock.svg"
 theme.lock = gears.color.recolor_image(theme.lock, xrdb.foreground)
 
+theme.yes = gfs.get_configuration_dir() .. "icons/yes.svg"
+theme.yes = gears.color.recolor_image(theme.yes, xrdb.foreground)
+
+theme.cross = gfs.get_configuration_dir() .. "icons/cross.svg"
+theme.cross = gears.color.recolor_image(theme.cross, xrdb.foreground)
+
+
+
 
 -- Icons for Notif Center and Menu
 --

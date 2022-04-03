@@ -34,7 +34,7 @@ local execute_button = function(icon, func)
       end,
     }
 end
-local prompt_button = function(icon)
+local prompt_button = function(icon, exec)
     return gooey.make_button {
       icon = icon,
       bg = beautiful.darker_bg,
@@ -43,7 +43,7 @@ local prompt_button = function(icon)
       height = 54,
       margins = 10,
       exec = function()
-        awesome.emit_signal("prompt::show")
+        awesome.emit_signal("prompt::show", exec)
       end,
     }
 end
@@ -53,7 +53,7 @@ local menu = wibox.widget {
     spacing = 8,
     forced_num_cols = 1,
     forced_num_rows = 4,
-    prompt_button(beautiful.shutdown),
+    prompt_button(beautiful.shutdown, "notify-send testi"),
     menubutton(beautiful.logout, "awesome-client 'awesome.quit()'"),
     menubutton(beautiful.refresh_icon, "sudo reboot"),
     execute_button(beautiful.lock, lock_screen_show)
