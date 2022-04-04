@@ -60,7 +60,7 @@ cc() {
 #Rust
 #--------------------------------------------------------------------------
 rust() {
-  var1=$1 && var2=.x && rustc $1 -o ${var1%.*}${var2} && ./${var1%.*}${var2}
+  var1=$1 && rustc $1 -o ${var1%.*} && ./${var1%.*}
 }
 cr() {
   cargo run $1
@@ -74,6 +74,9 @@ dots() {
 #--------------------------------------------------------------------------
 gaiggi() {
   gaa && gcmsg $1 && gp
+}
+vim() {
+	.local/bin/lvim $1
 }
 #Autojump
 [[ -s /home/koho/.autojump/etc/profile.d/autojump.sh ]] && source /home/koho/.autojump/etc/profile.d/autojump.sh
