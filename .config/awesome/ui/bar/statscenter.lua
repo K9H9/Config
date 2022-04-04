@@ -6,11 +6,11 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local helpers = require("helpers")
 local rubato = require("module.rubato")
-local gooey = require "ui.gooey"
+local buttons = require "ui.buttons"
 
 
 local app_factory = function(icon,exec)
-  return gooey.make_button {
+  return buttons.make_button {
     icon = icon,
     bg = beautiful.darker_bg,
     hover = true,

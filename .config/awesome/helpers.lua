@@ -121,7 +121,12 @@ helpers.rbar = function(width, height)
         gears.shape.rounded_bar(cr, width, height)
     end
 end
-
+-- music player centering helper
+function helpers.centered_client_placement(c)
+    return gears.timer.delayed_call(function ()
+        awful.placement.centered(c, {honor_padding = true, honor_workarea=true})
+    end)
+end
 -- Markup helper
 
 function helpers.colorize_text(txt, fg)

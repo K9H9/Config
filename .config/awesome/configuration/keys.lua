@@ -100,7 +100,8 @@ awful.keyboard.append_global_keybindings({
                 awful.spawn.with_shell("brave") end,
               {description = "browser", group = "utils"}),
     awful.key({modkey, "Shift"}, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"})
+              {description = "quit awesome", group = "awesome"}),
+              
 
 })
 
@@ -131,7 +132,7 @@ awful.keyboard.append_global_keybindings({
               function() awful.screen.focus_relative(-1) end,
               {description = "focus the previous screen", group = "screen"}),
 
-    awful.key({modkey}, "Return", function() awful.spawn(terminal) end,
+    awful.key({modkey}, "Return", function() awful.spawn.with_shell(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     
     awful.key({modkey}, "ä",

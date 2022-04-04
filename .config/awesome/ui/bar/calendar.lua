@@ -6,7 +6,6 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local helpers = require("helpers")
 local rubato = require("module.rubato")
-local gooey = require "ui.gooey"
 
 local styles = {}
 
