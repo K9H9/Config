@@ -336,7 +336,6 @@ awful.screen.connect_for_each_screen(function(s)
     client.connect_signal("request::unmanage", add_wibar)
 
     -- Create the taglist widget
-    s.mytaglist = require("ui.widgets.pacman_taglist")(s)
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {

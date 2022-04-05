@@ -43,19 +43,19 @@ ruled.client.connect_signal("request::rules", function()
         }
     }
 
-    -- Float em
-    -- ruled.client.append_rule {
-    --     id = "floating",
-    --     rule_any = {
-    --         class = {"Arandr", "Blueman-manager", "Sxiv", "fzfmenu"},
-    --         role = {
-    --             "pop-up" 
-    --         },
-    --         name = {"Friends List", "Steam - News"},
-    --         instance = {"spad", "music"}
-    --     },
-    --     properties = {floating = true, placement = awful.placement.centered}
-    -- }
+    
+    ruled.client.append_rule {
+        id = "floating",
+        rule_any = {
+            class = {"Arandr", "Blueman-manager", "Sxiv", "fzfmenu"},
+            role = {
+                "pop-up" 
+            },
+            name = {"Friends List", "Steam - News"},
+            instance = {"spad", "music"}
+        },
+        properties = {floating = true, placement = awful.placement.centered}
+    }
 
     -- Borders
     ruled.client.append_rule {

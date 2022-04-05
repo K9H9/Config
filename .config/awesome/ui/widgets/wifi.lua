@@ -27,16 +27,9 @@ local wifi = wibox.widget {
 }
 
 
-local wifitooltip = awful.tooltip {};
-wifitooltip.shape = helpers.prrect(beautiful.border_radius, false, true, true, false)
-wifitooltip.preferred_alignments = {"middle", "front", "back"}
-wifitooltip.mode = "inside"
-wifitooltip:add_to_object(wifi)
-wifitooltip.text = ""
 
 awful.widget.watch("/bin/sh -c $HOME/.config/awesome/signal/awesome_utils/wifi.sh", 1, function(widget, stdout)
   local up = stdout
-  wifitooltip.text = up
   if (string.find(up, "Not")) then
     wifi.bg = beautiful.wifi_off
   else

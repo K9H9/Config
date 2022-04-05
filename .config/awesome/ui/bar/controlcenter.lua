@@ -70,7 +70,7 @@ awful.screen.connect_for_each_screen(function(s)
                       {
                         { widget = require "ui.widgets.wifi" },
                         { widget = require "ui.widgets.bluetooth" },
-                        { widget = require "ui.widgets.dont-dist" },
+                        { widget = require "ui.widgets.colortoggle" },
                         { widget = require "ui.widgets.update" },
                         layout = wibox.layout.flex.horizontal,
                         spacing = 30,

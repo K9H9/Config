@@ -9,8 +9,9 @@ local helpers = require "helpers"
 local dnd = wibox.widget {
   {
     {
+      id = "image_mode",
       widget = wibox.widget.imagebox,
-      image = gears.filesystem.get_configuration_dir() .. "icons/moon.svg",
+      image = beautiful.dark,
       stylesheet = " * { stroke: " .. beautiful.darker_bg .. " }",
       forced_width = 28,
       valign = "center",
@@ -26,29 +27,22 @@ local dnd = wibox.widget {
   bg = beautiful.bg_normal,
 }
 
-local dndtip = awful.tooltip {};
-dndtip.shape = helpers.prrect(beautiful.border_radius, false, true, true, false)
-dndtip.preferred_alignments = {"middle", "front", "back"}
-dndtip.mode = "inside"
-dndtip:add_to_object(dnd)
-dndtip.text = "Notifications on"
 
 local on = beautiful.bg_bluetooth_on
 local off = beautiful.bg_bluetooth_off
-local s = true
+
+
 dnd:buttons {
   awful.button({}, 1, function()
-    s = not s
-    if s then
+    if theme == themes[2] then
       dnd.bg = off
-      naughty.resume()
-      dndtip.text = "Notifications on"
+      awful.spawn.with_shell("~/.config/awesome/signal/awesome_utils/light.sh")
     else
       dnd.bg = on
-      naughty.suspend()
-      dndtip.text = "Notifications off"
+      awful.spawn.with_shell("~/.config/awesome/signal/awesome_utils/dark.sh")
     end
   end),
 }
+
 
 return dnd

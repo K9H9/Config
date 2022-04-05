@@ -5,4 +5,5 @@ require("signal.cpu")
 require("signal.temp")
 require("signal.disk")
 require("signal.batterystatus")
+require("signal.wifistatus")
 

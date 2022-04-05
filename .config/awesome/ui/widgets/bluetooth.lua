@@ -27,17 +27,11 @@ local bluetooth = wibox.widget {
 }
 
 
-local bluetoothtip = awful.tooltip {};
-bluetoothtip.shape = helpers.prrect(beautiful.border_radius, false, true, true, false)
-bluetoothtip.preferred_alignments = {"middle", "front", "back"}
-bluetoothtip.mode = "inside"
-bluetoothtip:add_to_object(bluetooth)
-bluetoothtip.text = ""
+
 
 
 awful.widget.watch("/bin/sh -c $HOME/.config/awesome/signal/awesome_utils/bluetooth.sh", 1, function(widget, stdout)
   local up = stdout
-  bluetoothtip.text = up
   if (string.find(up, "off")) then
     bluetooth.bg = beautiful.bg_bluetooth_off
   else

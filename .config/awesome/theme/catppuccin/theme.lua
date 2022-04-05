@@ -13,8 +13,29 @@ local theme = dofile(themes_path .. "default/theme.lua")
 local icon_path = gfs.get_configuration_dir() .. "icons/"
 
 -- PFP
-theme.me = gears.surface.load_uncached(gfs.get_configuration_dir() ..
-"images/me.png")
+theme.xbackground = xrdb.background
+theme.xforeground = xrdb.foreground
+theme.xcolor0 = xrdb.color0
+theme.xcolor1 = xrdb.color1
+theme.xcolor2 = xrdb.color2
+theme.xcolor3 = xrdb.color3
+theme.xcolor4 = xrdb.color4
+theme.xcolor5 = xrdb.color5
+theme.xcolor6 = xrdb.color6
+theme.xcolor7 = xrdb.color7
+theme.xcolor8 = xrdb.color8
+theme.xcolor9 = xrdb.color9
+theme.xcolor10 = xrdb.color10
+theme.xcolor11 = xrdb.color11
+theme.xcolor12 = xrdb.color12
+theme.xcolor13 = xrdb.color13
+theme.xcolor14 = xrdb.color14
+theme.xcolor15 = xrdb.color15
+
+theme.darker_bg = "#302D41"
+theme.lighter_bg = "#575268"
+theme.bg_accent = xrdb.xcolor2
+theme.transparent = "#00000000"
 
 -- Distro Logo
 theme.titlebar_close_button_focus  = gfs.get_configuration_dir() .. "icons/close_focus.png"
@@ -47,7 +68,7 @@ theme.distro_logo = gfs.get_configuration_dir() .. "icons/logo.svg"
 theme.distro_logo = gears.color.recolor_image(theme.distro_logo, xrdb.foreground)
 
 theme.distro_image = gfs.get_configuration_dir() .. "icons/logo-gray-4096x4096.png"
-theme.distro_image = gears.color.recolor_image(theme.distro_image, "#1d2021")
+theme.distro_image = gears.color.recolor_image(theme.distro_image, theme.lighter_bg)
 
 
 -- Powermenu icons
@@ -70,6 +91,10 @@ theme.cross = gears.color.recolor_image(theme.cross, xrdb.foreground)
 
 -- Icons for Notif Center and Menu
 --
+theme.dark = gfs.get_configuration_dir() .. "icons/moon.svg"
+
+theme.light = gfs.get_configuration_dir() .. "icons/sun.svg"
+
 theme.menu_icon = gfs.get_configuration_dir() .. "icons/menu.svg"
 theme.menu_icon = gears.color.recolor_image(theme.menu_icon, xrdb.foreground)
 theme.clear_icon = icon_path .. "notif-center/clear.png"
@@ -83,11 +108,11 @@ theme.delete_grey_icon = icon_path .. "notif-center/delete_grey.png"
 
 theme.button_hover = "#655c54"
 theme.updates = xrdb.color7
-theme.no_updates = "#504945"
+theme.no_updates = theme.lighter_bg
 theme.bg_bluetooth_on = xrdb.color7
-theme.bg_bluetooth_off = "#504945"
+theme.bg_bluetooth_off = theme.lighter_bg
 theme.wifi_on = xrdb.color7
-theme.wifi_off = "#504945"
+theme.wifi_off = theme.lighter_bg
 theme.bluetooth_icon = gfs.get_configuration_dir() .. "icons/bluetooth.svg"
 theme.wifi_icon = gfs.get_configuration_dir() .. "icons/wifi.svg"
 theme.refresh_icon = gfs.get_configuration_dir() .. "icons/refresh-svgrepo-com.svg"
@@ -98,26 +123,7 @@ theme.battery_icon = gears.color.recolor_image(theme.battery_icon, "#458588")
 
 -- colors from .Xresources
 --
-theme.darker_bg = "#1d2021"
-theme.lighter_bg = "#504945"
-theme.xbackground = xrdb.background
-theme.xforeground = xrdb.foreground
-theme.xcolor0 = xrdb.color0
-theme.xcolor1 = xrdb.color1
-theme.xcolor2 = xrdb.color2
-theme.xcolor3 = xrdb.color3
-theme.xcolor4 = xrdb.color4
-theme.xcolor5 = xrdb.color5
-theme.xcolor6 = xrdb.color6
-theme.xcolor7 = xrdb.color7
-theme.xcolor8 = xrdb.color8
-theme.xcolor9 = xrdb.color9
-theme.xcolor10 = xrdb.color10
-theme.xcolor11 = xrdb.color11
-theme.xcolor12 = xrdb.color12
-theme.xcolor13 = xrdb.color13
-theme.xcolor14 = xrdb.color14
-theme.xcolor15 = xrdb.color15
+
 -- Fonts
 --
 theme.font_name = "Iosevka Nerd Font "

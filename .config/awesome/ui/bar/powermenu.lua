@@ -7,7 +7,132 @@ local dpi = xresources.apply_dpi
 local helpers = require("helpers")
 local rubato = require("module.rubato")
 
+
+local function create_boxed_widget(widget_to_be_boxed, width, height, inner_pad)
+    local box_container = wibox.container.background()
+    box_container.bg = beautiful.darker_bg
+    box_container.forced_height = height
+    box_container.forced_width = width
+    box_container.shape = helpers.rrect(beautiful.tooltip_box_border_radius)
+
+    local inner = dpi(0)
+
+    if inner_pad then inner = 10 end
+
+    local boxed_widget = wibox.widget {
+        {
+            widget_to_be_boxed,
+            margins = inner,
+            widget = wibox.container.margin
+        },
+        widget = box_container,
+        color = "#FF000000",
+    }
+
+    return boxed_widget
+end
+
+
+---- Stats
+
+-- Wifi
+local wifi_text = wibox.widget{
+    markup = helpers.colorize_text("WiFi", beautiful.xcolor8),
+    font = beautiful.font_name .. "9",
+    widget = wibox.widget.textbox
+}
+
+local wifi_ssid = wibox.widget{
+    markup = "Offline",
+    font = beautiful.font_name .. "bold 11",
+    valign = "bottom",
+    widget = wibox.widget.textbox
+}
+
+local wifi = wibox.widget{
+    wifi_text,
+    nil,
+    wifi_ssid,
+    layout = wibox.layout.align.vertical
+}
+
+awesome.connect_signal("signal::network", function(status, ssid)
+    wifi_ssid.markup = ssid
+end)
+
+-- Battery
+local batt_text = wibox.widget{
+    markup = helpers.colorize_text("Battery", beautiful.xbackground),
+    font = beautiful.font_name .. "9",
+    valign = "center",
+    widget = wibox.widget.textbox
+}
+
+local batt_perc = wibox.widget{
+    markup = "N/A",
+    font = beautiful.font_name .. "bold 11",
+    valign = "center",
+    widget = wibox.widget.textbox
+}
+
+local batt_bar = wibox.widget {
+    max_value = 100,
+    value = 20,
+    background_color = beautiful.transparent,
+    color = beautiful.xcolor0,
+    widget = wibox.widget.progressbar
+}
+
+local batt = wibox.widget{
+    batt_bar,
+    {
+        {
+            batt_text,
+            nil,
+            batt_perc,
+            -- spacing = dpi(5),
+            layout = wibox.layout.align.vertical
+        },
+        margins = 15,
+        widget = wibox.container.margin
+    },
+    layout = wibox.layout.stack
+}
+
+local batt_val = 0
+local batt_charger
+
+awesome.connect_signal("signal::battery", function(value)
+    batt_val = value
+    awesome.emit_signal("widget::battery")
+end)
+
+awesome.connect_signal("signal::charger", function(state)
+    batt_charger = state
+    awesome.emit_signal("widget::battery")
+end)
+
+awesome.connect_signal("widget::battery", function()
+    local b = batt_val
+    local fill_color = beautiful.xcolor2 
+
+    if batt_charger then
+        fill_color = beautiful.xcolor2 
+    else
+        if batt_val <= 15 then
+            fill_color = beautiful.xcolor1 
+        end
+    end
+
+    batt_perc.markup = helpers.colorize_text(b .. "%", beautiful.xbackground)
+    batt_bar.value = b
+    batt_bar.color = fill_color
+end)
     
+local wifi_boxed = create_boxed_widget(wifi, dpi(110), dpi(55), true)
+local batt_boxed = create_boxed_widget(batt, dpi(110), dpi(55))
+
+
 awful.screen.connect_for_each_screen(function(s)
         local buttons = require "ui.buttons"
         local prompt_button = function(icon, run)
@@ -71,18 +196,19 @@ awful.screen.connect_for_each_screen(function(s)
             spacing = 8,
             forced_num_cols = 1,
             forced_num_rows = 4,
-            prompt_button(beautiful.shutdown, "sudo shutdown"),
+            prompt_button(beautiful.shutdown, "shut"),
             prompt_button(beautiful.logout, "awesome-client 'awesome.quit()'"),
             prompt_button(beautiful.refresh_icon, "sudo reboot"),
             execute_button(beautiful.lock, lock_screen_show)
-    }
+        }
+       
     s.powermenu = wibox({
         screen = screen.primary,
         type = "dock",
         ontop = true,
         x = -600,
         y = screen_height - dpi(208) - dpi(15),
-        width = dpi(145*2),
+        width = dpi(190),
         height = dpi(208),
         visible = true
     })
@@ -91,13 +217,12 @@ awful.screen.connect_for_each_screen(function(s)
         {
             {
                 {
-                    bg = beautiful.darker_bg,
-                    shape = function(cr, width, height)
-                        gears.shape.rounded_rect(cr, width, height, 6)
-                    end,
-                    widget = wibox.container.background,
-                    forced_height = 100,
-                    forced_width = 270, 
+                    wifi_boxed,
+                    spacing = 13,
+                    batt_boxed,
+                    spacing = 13,
+                    wifi_boxed,
+                    layout = wibox.layout.fixed.vertical
                 },
                 spacing = 15,
                 {
@@ -106,7 +231,6 @@ awful.screen.connect_for_each_screen(function(s)
                     spacing = 10
                 },
                 layout = wibox.layout.fixed.horizontal,
-                margins = 10,
             },
             widget = wibox.container.margin,
             margins = 15,
