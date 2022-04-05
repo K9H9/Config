@@ -80,5 +80,6 @@ cp -r $HOME/awesome-config/.config/rofi $HOME/.config/rofi
 * [nuxshed](https://github.com/nuxshed/dotfiles)
 * [rxyhn](https://github.com/rxyhn)
 * [JavaCafe01](https://github.com/JavaCafe01)
+* [ChocolateBread799](https://github.com/ChocolateBread799)
 
 
