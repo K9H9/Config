@@ -17,11 +17,11 @@
 *   These are config files for the softwares I use. Might not be suitable for your use. Still under work, as you can see. There are also lot of quite hacky things that need to be fixed, so be prepared.
 
 ## My Setup
-*Catppuccin
+* Catppuccin
 ![Home-catppuccin](assets/home-catppuccin.png)
 ![Home-catppuccin](assets/home1-catppuccin.png)
 
-*Gruvbox
+* Gruvbox
 ![Home](assets/home.png)
 ![Home](assets/home1.png)
 * Os: Artix Linux(openrc)
