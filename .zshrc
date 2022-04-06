@@ -1,14 +1,16 @@
-#Loading p10k
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 #---------------------------------------------------------------------------
 #Defining path to oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
 source ~/.profile
 #---------------------------------------------------------------------------
 #Zsh theme loading
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME=""
+export EDITOR=~/.local/bin/lvim
+eval $(starship init zsh)
+function set_win_title(){
+    echo -ne "\033]0; Wezterm \007"
+}
+precmd_functions+=(set_win_title)
 #---------------------------------------------------------------------------
 #plugin list
 plugins=(git autojump web-search thefuck zsh-syntax-highlighting zsh-history-substring-search zsh-autosuggestions)
@@ -31,8 +33,9 @@ alias speed="/home/koho/Apps/speed-ookla/speedtest"
 #---------------------------------------------------------------------------
 alias config='/usr/bin/git --git-dir=$HOME/Code/Dotfiles --work-tree=$HOME'
 alias shut="sudo openrc-shutdown -p now"
-alias zs="nvim $HOME/.zshrc"
+alias zs="vim $HOME/.zshrc"
 alias sc="source $HOME/.zshrc"
+alias vim="~/.local/bin/lvim"
 alias sc1="source $HOME/.p10k.zsh"
 alias update="sudo pacman -Syy && sudo pacman -Syu && yay -Syu"
 alias cri="cargo init"
@@ -59,9 +62,9 @@ cc() {
 }
 #Rust
 #--------------------------------------------------------------------------
-rust() {
-  var1=$1 && rustc $1 -o ${var1%.*} && ./${var1%.*}
-}
+#rust() {
+#  var1=$1 && rustc $1 -o ${var1%.*} && ./${var1%.*}
+#}
 cr() {
   cargo run $1
 }
@@ -74,9 +77,6 @@ dots() {
 #--------------------------------------------------------------------------
 gaiggi() {
   gaa && gcmsg $1 && gp
-}
-vim() {
-	.local/bin/lvim $1
 }
 #Autojump
 [[ -s /home/koho/.autojump/etc/profile.d/autojump.sh ]] && source /home/koho/.autojump/etc/profile.d/autojump.sh
