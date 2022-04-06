@@ -20,6 +20,7 @@ local update = wibox.widget {
     },
     widget = wibox.container.margin,
     margins = 12.5,
+    id = "inner_margin"
   },
   bg = beautiful.no_updates,
   widget = wibox.container.background,
@@ -45,6 +46,13 @@ awful.widget.watch("/bin/sh -c $HOME/.config/awesome/signal/awesome_utils/update
   end
 end)
 
+update:connect_signal("mouse::enter", function()
+  update.inner_margin.margins = 12.5 * 0.85
+end)
+
+update:connect_signal("mouse::leave", function()
+  update.inner_margin.margins = 12.5   
+end)
 
 
 return update

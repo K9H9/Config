@@ -10,8 +10,8 @@ local M = {}
 function M.make_button(opts)
   opts = opts or {}
 
-  local icon = gears.color.recolor_image(opts.icon, beautiful.xcolor7)
-  local icon1 = gears.color.recolor_image(opts.icon, beautiful.xcolor1)
+  local icon = gears.color.recolor_image(opts.icon, opts.alt_color or beautiful.xcolor7)
+  -- local icon1 = gears.color.recolor_image(opts.icon, beautiful.xcolor1)
   local icon_widget = wibox.widget {
     widget = wibox.widget.imagebox,
     image = icon,
@@ -39,6 +39,7 @@ function M.make_button(opts)
     bg = opts.bg or beautiful.bg_normal,
     fg = opts.fg or beautiful.fg_normal,
     {
+      id = "inner", 
       widget = wibox.container.margin,
       margins = opts.margins or 30,
       inner_widget,
@@ -55,11 +56,13 @@ function M.make_button(opts)
 
   if opts.hover then
     button:connect_signal("mouse::enter", function()
-      icon_widget.image = icon1
+      -- icon_widget.image = icon1
+      button.inner.margins = opts.margins * 0.85
     end)
-
+    
     button:connect_signal("mouse::leave", function()
-      icon_widget.image = icon
+      -- icon_widget.image = icon
+      button.inner.margins = opts.margins 
     end)
   end
 
@@ -69,7 +72,7 @@ function M.yesno_button(opts)
   opts = opts or {}
 
   local icon = gears.color.recolor_image(opts.icon, beautiful.xcolor7)
-  local icon1 = gears.color.recolor_image(opts.icon, beautiful.xcolor1)
+  local icon1 = gears.color.recolor_image(opts.icon, opts.alt_color)
   local icon_widget = wibox.widget {
     widget = wibox.widget.imagebox,
     image = icon,
@@ -97,6 +100,7 @@ function M.yesno_button(opts)
     bg = opts.bg or beautiful.bg_normal,
     fg = opts.fg or beautiful.fg_normal,
     {
+      id = "inner", 
       widget = wibox.container.margin,
       margins = opts.margins or 30,
       inner_widget,
@@ -114,10 +118,12 @@ function M.yesno_button(opts)
   if opts.hover then
     button:connect_signal("mouse::enter", function()
       icon_widget.image = icon1
+      button.inner.margins = opts.margins * 0.85
     end)
-
+    
     button:connect_signal("mouse::leave", function()
       icon_widget.image = icon
+      button.inner.margins = opts.margins 
     end)
   end
 
@@ -127,8 +133,8 @@ end
 function M.prompt_button(opts)
   opts = opts or {}
 
-  local icon = gears.color.recolor_image(opts.icon, beautiful.xcolor7)
-  local icon1 = gears.color.recolor_image(opts.icon, beautiful.xcolor1)
+  local icon = gears.color.recolor_image(opts.icon, opts.alt_color or beautiful.xcolor7)
+  -- local icon1 = gears.color.recolor_image(opts.icon, beautiful.xcolor1)
   local icon_widget = wibox.widget {
     widget = wibox.widget.imagebox,
     image = icon,
@@ -156,6 +162,7 @@ function M.prompt_button(opts)
     bg = opts.bg or beautiful.bg_normal,
     fg = opts.fg or beautiful.fg_normal,
     {
+      id = "inner", 
       widget = wibox.container.margin,
       margins = opts.margins or 30,
       inner_widget,
@@ -172,11 +179,13 @@ function M.prompt_button(opts)
 
   if opts.hover then
     button:connect_signal("mouse::enter", function()
-      icon_widget.image = icon1
+      -- icon_widget.image = icon1
+      button.inner.margins = opts.margins * 0.85
     end)
-
+    
     button:connect_signal("mouse::leave", function()
-      icon_widget.image = icon
+      -- icon_widget.image = icon
+      button.inner.margins = opts.margins 
     end)
   end
 

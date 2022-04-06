@@ -202,7 +202,7 @@ theme.taglist_shape_volatile = helpers.rrect(theme.border_radius)
 -- Wallpaper
 --
 
-theme.wallpaper = gfs.get_configuration_dir() .. "images/gr-leaves.jpg"
+theme.wallpaper = gfs.get_configuration_dir() .. "images/cat-sound.png"
 
 -- Tasklist
 --

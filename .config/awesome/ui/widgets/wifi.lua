@@ -16,6 +16,7 @@ local wifi = wibox.widget {
       halign = "center",
       forced_width = 30,
     },
+    id = "inner_margin",
     widget = wibox.container.margin,
     margins = 8,
   },
@@ -37,7 +38,13 @@ awful.widget.watch("/bin/sh -c $HOME/.config/awesome/signal/awesome_utils/wifi.s
   end
 end)
 
+wifi:connect_signal("mouse::enter", function()
+  wifi.inner_margin.margins = 8 * 0.85
+end)
 
+wifi:connect_signal("mouse::leave", function()
+  wifi.inner_margin.margins = 8   
+end)
 
 local s = false 
 wifi:buttons {

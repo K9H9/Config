@@ -6,7 +6,7 @@ local naughty = require "naughty"
 local wibox = require "wibox"
 local helpers = require "helpers"
 
-local dnd = wibox.widget {
+local color_change_button = wibox.widget {
   {
     {
       id = "image_mode",
@@ -17,6 +17,7 @@ local dnd = wibox.widget {
       valign = "center",
       halign = "center",
     },
+    id = "inner_margin",
     widget = wibox.container.margin,
     margins = 11,
   },
@@ -31,18 +32,25 @@ local dnd = wibox.widget {
 local on = beautiful.bg_bluetooth_on
 local off = beautiful.bg_bluetooth_off
 
+color_change_button:connect_signal("mouse::enter", function()
+  color_change_button.inner_margin.margins = 11 * 0.85
+end)
 
-dnd:buttons {
+color_change_button:connect_signal("mouse::leave", function()
+  color_change_button.inner_margin.margins = 11  
+end)
+
+color_change_button:buttons {
   awful.button({}, 1, function()
     if theme == themes[2] then
-      dnd.bg = off
+      color_change_button.bg = off
       awful.spawn.with_shell("~/.config/awesome/signal/awesome_utils/light.sh")
     else
-      dnd.bg = on
+      color_change_button.bg = on
       awful.spawn.with_shell("~/.config/awesome/signal/awesome_utils/dark.sh")
     end
   end),
 }
 
 
-return dnd
+return color_change_button

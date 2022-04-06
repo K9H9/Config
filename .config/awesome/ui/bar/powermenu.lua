@@ -33,7 +33,6 @@ local function create_boxed_widget(widget_to_be_boxed, width, height, inner_pad)
 end
 
 
----- Stats
 
 -- Wifi
 local wifi_text = wibox.widget{
@@ -60,9 +59,35 @@ awesome.connect_signal("signal::network", function(status, ssid)
     wifi_ssid.markup = ssid
 end)
 
+
+--Bluetooth
+local bluetooth_text = wibox.widget{
+    markup = helpers.colorize_text("Bluetooth", beautiful.xcolor8),
+    font = beautiful.font_name .. "9",
+    widget = wibox.widget.textbox
+}
+
+local bluetooth_ssid = wibox.widget{
+    markup = "Offline",
+    font = beautiful.font_name .. "bold 11",
+    valign = "bottom",
+    widget = wibox.widget.textbox
+}
+
+local bluetooth = wibox.widget{
+    bluetooth_text,
+    nil,
+    bluetooth_ssid,
+    layout = wibox.layout.align.vertical
+}
+
+awesome.connect_signal("signal::bluetoothwork", function(status, ssid)
+    wifi_ssid.markup = ssid
+end)
+
 -- Battery
 local batt_text = wibox.widget{
-    markup = helpers.colorize_text("Battery", beautiful.xbackground),
+    markup = helpers.colorize_text("Battery", beautiful.xcolor8),
     font = beautiful.font_name .. "9",
     valign = "center",
     widget = wibox.widget.textbox
@@ -93,7 +118,7 @@ local batt = wibox.widget{
             -- spacing = dpi(5),
             layout = wibox.layout.align.vertical
         },
-        margins = 15,
+        margins = 10,
         widget = wibox.container.margin
     },
     layout = wibox.layout.stack
@@ -114,30 +139,35 @@ end)
 
 awesome.connect_signal("widget::battery", function()
     local b = batt_val
-    local fill_color = beautiful.xcolor2 
+    local fill_color = beautiful.xcolor10 .. "88"
 
     if batt_charger then
-        fill_color = beautiful.xcolor2 
+        fill_color = beautiful.xcolor10 
     else
         if batt_val <= 15 then
-            fill_color = beautiful.xcolor1 
+            fill_color = beautiful.xcolor1 .. "33"
         end
     end
 
-    batt_perc.markup = helpers.colorize_text(b .. "%", beautiful.xbackground)
+    batt_perc.markup = b .. "%"
     batt_bar.value = b
     batt_bar.color = fill_color
 end)
+
+
+
     
 local wifi_boxed = create_boxed_widget(wifi, dpi(110), dpi(55), true)
 local batt_boxed = create_boxed_widget(batt, dpi(110), dpi(55))
+local bluetooth_boxed = create_boxed_widget(bluetooth, dpi(110), dpi(55), true)
 
 
 awful.screen.connect_for_each_screen(function(s)
         local buttons = require "ui.buttons"
-        local prompt_button = function(icon, run)
+        local prompt_button = function(icon, run, color)
             return buttons.prompt_button {
               icon = icon,
+              alt_color = color,
               bg = beautiful.darker_bg,
               hover = true,
               width = 54,
@@ -152,9 +182,10 @@ awful.screen.connect_for_each_screen(function(s)
               end
             }
         end
-        local execute_button = function(icon, func)
+        local execute_button = function(icon, func, color)
             return buttons.make_button {
               icon = icon,
+              alt_color = color,
               bg = beautiful.darker_bg,
               hover = true,
               width = 54,
@@ -165,9 +196,10 @@ awful.screen.connect_for_each_screen(function(s)
               end,
             }
         end
-        local get_permission = function(icon, state)
+        local get_permission = function(icon, state, color)
             return buttons.yesno_button {
               icon = icon,
+              alt_color = color,
               bg = beautiful.darker_bg,
               hover = true,
               width = 75,
@@ -188,18 +220,18 @@ awful.screen.connect_for_each_screen(function(s)
             spacing = 45,
             forced_num_cols = 2,
             forced_num_rows = 1,
-            get_permission(beautiful.yes,"yes"),
-            get_permission(beautiful.cross,"no"),
+            get_permission(beautiful.yes,"yes", beautiful.xcolor2),
+            get_permission(beautiful.cross,"no",beautiful.xcolor1),
         }
         local menu = wibox.widget {
             layout = wibox.layout.grid,
             spacing = 8,
             forced_num_cols = 1,
             forced_num_rows = 4,
-            prompt_button(beautiful.shutdown, "shut"),
-            prompt_button(beautiful.logout, "awesome-client 'awesome.quit()'"),
-            prompt_button(beautiful.refresh_icon, "sudo reboot"),
-            execute_button(beautiful.lock, lock_screen_show)
+            prompt_button(beautiful.shutdown, "shut", beautiful.xcolor1),
+            prompt_button(beautiful.logout, "awesome-client 'awesome.quit()'", beautiful.xcolor2),
+            prompt_button(beautiful.refresh_icon, "sudo reboot", beautiful.xcolor3),
+            execute_button(beautiful.lock, lock_screen_show, beautiful.xcolor4)
         }
        
     s.powermenu = wibox({
@@ -221,7 +253,7 @@ awful.screen.connect_for_each_screen(function(s)
                     spacing = 13,
                     batt_boxed,
                     spacing = 13,
-                    wifi_boxed,
+                    bluetooth_boxed,
                     layout = wibox.layout.fixed.vertical
                 },
                 spacing = 15,
@@ -302,7 +334,7 @@ awful.screen.connect_for_each_screen(function(s)
                         top = 30,
                         bottom = 15,
                         left = 70,
-                        rigth = 55,
+                        right = 55,
                     },
                     layout = wibox.layout.fixed.vertical,
             },

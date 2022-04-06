@@ -16,6 +16,7 @@ local bluetooth = wibox.widget {
       halign = "center",
       forced_width = 25,
     },
+    id = "inner_margin",
     widget = wibox.container.margin,
     margins = 12.5,
   },
@@ -41,7 +42,13 @@ end)
 
 
 
+bluetooth:connect_signal("mouse::enter", function()
+  bluetooth.inner_margin.margins = 12.5 * 0.85
+end)
 
+bluetooth:connect_signal("mouse::leave", function()
+  bluetooth.inner_margin.margins = 12.5   
+end)
 
 
 local s = true

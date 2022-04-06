@@ -9,28 +9,28 @@ local rubato = require("module.rubato")
 local buttons = require "ui.buttons"
 
 
-local app_factory = function(icon,exec)
+local app_factory = function(icon, exec, margins)
   return buttons.make_button {
     icon = icon,
     bg = beautiful.darker_bg,
     hover = true,
     width = 80,
     height = 80,
-    margins = 20,
+    margins = margins,
     exec = function()
       awful.spawn(exec)
     end,
   }
 end
 
-local app_gimp = app_factory(beautiful.gimp, "gimp")
-local app_discord = app_factory(beautiful.discord,"discord")
-local site_gmail = app_factory(beautiful.gmail,"firefox https://mail.google.com")
-local site_github = app_factory(beautiful.github, "firefox https://github.com")
-local app_code = app_factory(beautiful.vscode,"code")
-local app_firefox = app_factory(beautiful.brave,"brave")
-local app_terminal = app_factory(beautiful.spotify,"spotify")
-local site_artix = app_factory(beautiful.distro_logo, "firefox https://wiki.archlinux.org/")
+local app_gimp = app_factory(beautiful.gimp, "gimp", 20)
+local app_discord = app_factory(beautiful.discord,"discord", 20)
+local site_gmail = app_factory(beautiful.gmail,"brave https://mail.google.com", 20)
+local site_github = app_factory(beautiful.github, "brave https://github.com", 20)
+local app_code = app_factory(beautiful.vscode,"code", 20)
+local app_brave = app_factory(beautiful.brave,"brave", 20)
+local app_terminal = app_factory(beautiful.spotify,"spotify", 20)
+local site_artix = app_factory(beautiful.distro_logo, "brave https://wiki.archlinux.org/", 20)
 
 
 local apps = wibox.widget {
@@ -39,7 +39,7 @@ local apps = wibox.widget {
   forced_num_cols = 4,
   forced_num_rows = 2,
   app_gimp,
-  app_firefox,
+  app_brave,
   site_github,
   app_code,
   app_discord,
