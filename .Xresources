@@ -1,5 +1,7 @@
 Xcursor.size: 16
 
+
+
 *background: #1E1E2E
 *foreground: #D9E0EE
 
@@ -13,11 +15,11 @@ Xcursor.size: 16
 
 ! Green
 *color2: #ABE9B3
-*color10: #ABE9B3
+*color10: #575268
 
 ! Yellow
 *color3: #FAE3B0
-*color11:  #FAE3B0
+*color11:  #302D41
 
 ! Blue
 *color4: #96CDFB
@@ -34,5 +36,7 @@ Xcursor.size: 16
 ! Whites
 *color7: #C3BAC6
 *color15: #D9E0EE
+
+
 
 
