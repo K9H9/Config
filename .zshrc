@@ -5,7 +5,7 @@ source ~/.profile
 #---------------------------------------------------------------------------
 #Zsh theme loading
 #ZSH_THEME=""
-export EDITOR=~/.local/bin/lvim
+export EDITOR=nvim
 eval $(starship init zsh)
 function set_win_title(){
     echo -ne "\033]0; Wezterm \007"
