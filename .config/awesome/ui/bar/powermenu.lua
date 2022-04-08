@@ -13,7 +13,7 @@ local function create_boxed_widget(widget_to_be_boxed, width, height, inner_pad)
     box_container.bg = beautiful.darker_bg
     box_container.forced_height = height
     box_container.forced_width = width
-    box_container.shape = helpers.rrect(beautiful.tooltip_box_border_radius)
+    box_container.shape = helpers.rrect(5)
 
     local inner = dpi(0)
 
@@ -57,6 +57,11 @@ local wifi = wibox.widget{
 
 awesome.connect_signal("signal::network", function(status, ssid)
     wifi_ssid.markup = ssid
+    wifi_text.markup = "Wifi" 
+    if status == false then
+        wifi_text.markup = "Ethernet"
+        wifi_ssid.markup = "eth0"
+    end
 end)
 
 
@@ -67,9 +72,9 @@ local bluetooth_text = wibox.widget{
     widget = wibox.widget.textbox
 }
 
-local bluetooth_ssid = wibox.widget{
+local bluetooth_dev = wibox.widget{
     markup = "Offline",
-    font = beautiful.font_name .. "bold 11",
+    font = beautiful.font_name .. "bold 5",
     valign = "bottom",
     widget = wibox.widget.textbox
 }
@@ -77,13 +82,17 @@ local bluetooth_ssid = wibox.widget{
 local bluetooth = wibox.widget{
     bluetooth_text,
     nil,
-    bluetooth_ssid,
+    bluetooth_dev,
     layout = wibox.layout.align.vertical
 }
 
-awesome.connect_signal("signal::bluetoothwork", function(status, ssid)
-    wifi_ssid.markup = ssid
-end)
+-- awful.widget.watch("bt-device -l | tail -1 | cut -d "'' '' -f 1", 2, function(widget, stdout)
+--         bluetooth_dev.markup = stdout
+
+-- end)
+-- awesome.connect_signal("signal::bluetoothwork", function(dev)
+--     bluetooth_dev.markup = "online"
+-- end)
 
 -- Battery
 local batt_text = wibox.widget{
@@ -139,10 +148,10 @@ end)
 
 awesome.connect_signal("widget::battery", function()
     local b = batt_val
-    local fill_color = beautiful.xcolor10 .. "88"
+    local fill_color = beautiful.xcolor2 .. "88"
 
     if batt_charger then
-        fill_color = beautiful.xcolor10 
+        fill_color = beautiful.xcolor2
     else
         if batt_val <= 15 then
             fill_color = beautiful.xcolor1 .. "33"
@@ -228,7 +237,7 @@ awful.screen.connect_for_each_screen(function(s)
             spacing = 8,
             forced_num_cols = 1,
             forced_num_rows = 4,
-            prompt_button(beautiful.shutdown, "shut", beautiful.xcolor1),
+            prompt_button(beautiful.shutdown, "/usr/lib/openrc/bin/reboot", beautiful.xcolor1),
             prompt_button(beautiful.logout, "awesome-client 'awesome.quit()'", beautiful.xcolor2),
             prompt_button(beautiful.refresh_icon, "sudo reboot", beautiful.xcolor3),
             execute_button(beautiful.lock, lock_screen_show, beautiful.xcolor4)

@@ -40,13 +40,14 @@ color_change_button:connect_signal("mouse::leave", function()
   color_change_button.inner_margin.margins = 11  
 end)
 
+local s = true
+    
 color_change_button:buttons {
   awful.button({}, 1, function()
-    if theme == themes[2] then
-      color_change_button.bg = off
+    s = not s
+    if s then
       awful.spawn.with_shell("~/.config/awesome/signal/awesome_utils/light.sh")
     else
-      color_change_button.bg = on
       awful.spawn.with_shell("~/.config/awesome/signal/awesome_utils/dark.sh")
     end
   end),

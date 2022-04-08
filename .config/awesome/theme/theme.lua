@@ -13,8 +13,29 @@ local theme = dofile(themes_path .. "default/theme.lua")
 local icon_path = gfs.get_configuration_dir() .. "icons/"
 
 -- PFP
-theme.me = gears.surface.load_uncached(gfs.get_configuration_dir() ..
-"images/me.png")
+theme.xbackground = xrdb.background
+theme.xforeground = xrdb.foreground
+theme.xcolor0 = xrdb.color0
+theme.xcolor1 = xrdb.color1
+theme.xcolor2 = xrdb.color2
+theme.xcolor3 = xrdb.color3
+theme.xcolor4 = xrdb.color4
+theme.xcolor5 = xrdb.color5
+theme.xcolor6 = xrdb.color6
+theme.xcolor7 = xrdb.color7
+theme.xcolor8 = xrdb.color8
+theme.xcolor9 = xrdb.color9
+theme.xcolor10 = xrdb.color10
+theme.xcolor11 = xrdb.color11
+theme.xcolor12 = xrdb.color12
+theme.xcolor13 = xrdb.color13
+theme.xcolor14 = xrdb.color14
+theme.xcolor15 = xrdb.color15
+
+theme.darker_bg = xrdb.color11
+theme.lighter_bg = xrdb.color10
+theme.bg_accent = xrdb.color2
+theme.transparent = "#00000000"
 
 -- Distro Logo
 theme.titlebar_close_button_focus  = gfs.get_configuration_dir() .. "icons/close_focus.png"
@@ -23,47 +44,47 @@ theme.titlebar_close_button_normal = gfs.get_configuration_dir() .. "icons/close
 --App/sites logos
 
 theme.gimp = gfs.get_configuration_dir() .. "icons/gimp.svg"
-theme.gimp = gears.color.recolor_image(theme.gimp, "##a89984")
+theme.gimp = gears.color.recolor_image(theme.gimp, xrdb.color7)
 
 theme.discord = gfs.get_configuration_dir() .. "icons/discord.svg"
-theme.discord = gears.color.recolor_image(theme.discord, "##a89984")
+theme.discord = gears.color.recolor_image(theme.discord, xrdb.color7)
 
 theme.github = gfs.get_configuration_dir() .. "icons/github.svg"
-theme.github = gears.color.recolor_image(theme.github, "##a89984")
+theme.github = gears.color.recolor_image(theme.github, xrdb.color7)
 
 theme.gmail = gfs.get_configuration_dir() .. "icons/gmail.svg"
-theme.gmail = gears.color.recolor_image(theme.gmail, "##a89984")
+theme.gmail = gears.color.recolor_image(theme.gmail, xrdb.color7)
 
 theme.vscode = gfs.get_configuration_dir() .. "icons/vscode.svg"
-theme.vscode = gears.color.recolor_image(theme.vscode, "##a89984")
+theme.vscode = gears.color.recolor_image(theme.vscode, xrdb.color7)
 
 theme.spotify = gfs.get_configuration_dir() .. "icons/spotify.svg"
-theme.spotify = gears.color.recolor_image(theme.spotify, "##a89984")
+theme.spotify = gears.color.recolor_image(theme.spotify, xrdb.color7)
 
 theme.brave = gfs.get_configuration_dir() .. "icons/brave.svg"
-theme.brave = gears.color.recolor_image(theme.brave, "##a89984")
+theme.brave = gears.color.recolor_image(theme.brave, xrdb.color7)
 
 theme.distro_logo = gfs.get_configuration_dir() .. "icons/logo.svg"
-theme.distro_logo = gears.color.recolor_image(theme.distro_logo, "#ebdbb2")
+theme.distro_logo = gears.color.recolor_image(theme.distro_logo, xrdb.foreground)
 
 theme.distro_image = gfs.get_configuration_dir() .. "icons/logo-gray-4096x4096.png"
-theme.distro_image = gears.color.recolor_image(theme.distro_image, "#1d2021")
+theme.distro_image = gears.color.recolor_image(theme.distro_image, theme.lighter_bg)
 
 
 -- Powermenu icons
 --
 theme.shutdown = gfs.get_configuration_dir() .. "icons/poweroff.svg"
-theme.shutdown = gears.color.recolor_image(theme.shutdown, "#ebdbb2")
+theme.shutdown = gears.color.recolor_image(theme.shutdown, xrdb.foreground)
 theme.logout = gfs.get_configuration_dir() .. "icons/logout.svg"
-theme.logout = gears.color.recolor_image(theme.logout, "#ebdbb2")
+theme.logout = gears.color.recolor_image(theme.logout, xrdb.foreground)
 theme.lock = gfs.get_configuration_dir() .. "icons/lock.svg"
-theme.lock = gears.color.recolor_image(theme.lock, "#ebdbb2")
+theme.lock = gears.color.recolor_image(theme.lock, xrdb.foreground)
 
 theme.yes = gfs.get_configuration_dir() .. "icons/yes.svg"
-theme.yes = gears.color.recolor_image(theme.yes, "#ebdbb2")
+theme.yes = gears.color.recolor_image(theme.yes, xrdb.foreground)
 
 theme.cross = gfs.get_configuration_dir() .. "icons/cross.svg"
-theme.cross = gears.color.recolor_image(theme.cross, "#ebdbb2")
+theme.cross = gears.color.recolor_image(theme.cross, xrdb.foreground)
 
 
 
@@ -75,7 +96,7 @@ theme.dark = gfs.get_configuration_dir() .. "icons/moon.svg"
 theme.light = gfs.get_configuration_dir() .. "icons/sun.svg"
 
 theme.menu_icon = gfs.get_configuration_dir() .. "icons/menu.svg"
-theme.menu_icon = gears.color.recolor_image(theme.menu_icon, "#ebdbb2")
+theme.menu_icon = gears.color.recolor_image(theme.menu_icon, xrdb.foreground)
 theme.clear_icon = icon_path .. "notif-center/clear.png"
 theme.clear_grey_icon = icon_path .. "notif-center/clear_grey.png"
 theme.notification_icon = icon_path .. "notif-center/notification.png"
@@ -86,12 +107,12 @@ theme.delete_grey_icon = icon_path .. "notif-center/delete_grey.png"
 --
 
 theme.button_hover = "#655c54"
-theme.updates = "##a89984"
-theme.no_updates = "#504945"
-theme.bg_bluetooth_on = "##a89984"
-theme.bg_bluetooth_off = "#504945"
-theme.wifi_on = "##a89984"
-theme.wifi_off = "#504945"
+theme.updates = xrdb.color7
+theme.no_updates = theme.lighter_bg
+theme.bg_bluetooth_on = xrdb.color7
+theme.bg_bluetooth_off = theme.lighter_bg
+theme.wifi_on = xrdb.color7
+theme.wifi_off = theme.lighter_bg
 theme.bluetooth_icon = gfs.get_configuration_dir() .. "icons/bluetooth.svg"
 theme.wifi_icon = gfs.get_configuration_dir() .. "icons/wifi.svg"
 theme.refresh_icon = gfs.get_configuration_dir() .. "icons/refresh-svgrepo-com.svg"
@@ -102,29 +123,7 @@ theme.battery_icon = gears.color.recolor_image(theme.battery_icon, "#458588")
 
 -- colors from .Xresources
 --
-theme.darker_bg = "#1d2021"
-theme.lighter_bg = "#504945"
-theme.bg_accent = "#1C1E24"
-theme.transparent = "#00000000"
 
-theme.xbackground = "#282828"
-theme.xforeground = "#ebdbb2"
-theme.xcolor0 = "#282828"
-theme.xcolor1 = "#cc241d"
-theme.xcolor2 = "#98971a"
-theme.xcolor3 = "#d79921"
-theme.xcolor4 = "#458588"
-theme.xcolor5 = "#b16286"
-theme.xcolor6 = "#689d6a"
-theme.xcolor7 = "#a89984"
-theme.xcolor8 = "#928374"
-theme.xcolor9 = "#fb4934"
-theme.xcolor10 = "#b8bb26"
-theme.xcolor11 = "#fabd2f"
-theme.xcolor12 = "#83a589"
-theme.xcolor13 = "#d3869b"
-theme.xcolor14 = "#8ec07c"
-theme.xcolor15 = "#ebdbb2"
 -- Fonts
 --
 theme.font_name = "Iosevka Nerd Font "
@@ -203,7 +202,7 @@ theme.taglist_shape_volatile = helpers.rrect(theme.border_radius)
 -- Wallpaper
 --
 
-theme.wallpaper = gfs.get_configuration_dir() .. "images/gr-leaves.jpg"
+theme.wallpaper = gfs.get_configuration_dir() .. "images/cat-sound.png"
 
 -- Tasklist
 --

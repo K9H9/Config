@@ -27,13 +27,13 @@ naughty.connect_signal("request::display_error", function(message, startup)
 end)
 
 -- Initialize Theme
-themes = {
-    "catppuccin",
-    "gruvbox-dark",
-  }
+-- themes = {
+--     "catppuccin",
+--     "gruvbox-dark",
+--   }
   
-theme = themes[1]
-beautiful.init(gfs.get_configuration_dir() .. "theme/" .. theme .. "/theme.lua")
+-- theme = themes[1]
+beautiful.init(gfs.get_configuration_dir() .. "theme/theme.lua")
 
 local nice = require("nice")
 nice {
