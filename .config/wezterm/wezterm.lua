@@ -8,7 +8,7 @@ return {
     harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
     font_size = 15,
     -- window_background_image = "/home/koho/.config/wezterm/bg.jpeg",
-    color_scheme = "Catppuccin",
+    color_scheme = 'Catppuccin',
     keys = {
         -- This will create a new split and run the `top` program inside it
         {key="ä", mods="CTRL", action=wezterm.action{SplitVertical={}}},
