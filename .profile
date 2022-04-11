@@ -1,2 +1,2 @@
-export SUDO_PROMPT="  "
+export SUDO_PROMPT="  "
 . "$HOME/.cargo/env"
