@@ -1,5 +1,4 @@
 #!/bin/sh
-
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
@@ -35,8 +34,11 @@ xrandr --output DP-0.1 --above DP-4 --auto
 xrandr --output DP-0.3 --right-of DP-0.1 --auto
 xrandr --output DP-0.2 --left-of DP-0.1 --primary --auto
 
-
+/usr/bin/pipewire &
+/usr/bin/pipewire-pulse &
+/usr/bin/wireplumber &
 setxkbmap fi
 picom -b 
 discocss & 
+sc
 exec awesome
