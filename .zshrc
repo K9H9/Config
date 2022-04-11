@@ -7,10 +7,6 @@ source ~/.profile
 #ZSH_THEME=""
 export EDITOR=nvim
 eval $(starship init zsh)
-function set_win_title(){
-    echo -ne "\033]0; Wezterm \007"
-}
-precmd_functions+=(set_win_title)
 #---------------------------------------------------------------------------
 #plugin list
 plugins=(git autojump web-search thefuck zsh-syntax-highlighting zsh-history-substring-search zsh-autosuggestions)
@@ -40,6 +36,10 @@ alias sc1="source $HOME/.p10k.zsh"
 alias update="sudo pacman -Syy && sudo pacman -Syu && yay -Syu"
 alias cri="cargo init"
 alias cb="cargo build"
+##Awesome aliases
+#----------------------------------------------------------------------------
+alias gruvbox="~/.config/awesome/signal/awesome_utils/gruvbox-dark.sh"
+#Todo
 #Package managing
 eval $(keychain --eval --quiet id_rsa ~/.ssh/id_rsa)
 #---------------------------------------------------------------------------
@@ -78,7 +78,18 @@ dots() {
 gaiggi() {
   gaa && gcmsg $1 && gp
 }
+
+#todo
+tdone() {
+  todo done $1
+  todo raw done > ~/.config/awesome/signal/awesome_utils/todo-done.txt
+  todo raw todo > ~/.config/awesome/signal/awesome_utils/todo-todo.txt
+}
+tadd() {
+  todo add $1
+  todo raw todo > ~/.config/awesome/signal/awesome_utils/todo-todo.txt
+  todo raw done > ~/.config/awesome/signal/awesome_utils/todo-done.txt
+}
+
 #Autojump
 [[ -s /home/koho/.autojump/etc/profile.d/autojump.sh ]] && source /home/koho/.autojump/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u# fi
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
