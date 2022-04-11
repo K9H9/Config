@@ -6,10 +6,10 @@ dev="$(bluetoothctl info | egrep "Name" | cut -d " " -f 2)"
 
 if [[ $state == "yes" ]]; then
     if  [[ $connection == "yes" ]]; then
-        echo "Connected to $dev"
+        echo $dev
     else
-        echo "Not Connected"
+        echo "Offline"
     fi
 else
-    echo "Bluetooth off"
+    echo "Offline"
 fi

@@ -70,4 +70,8 @@ require("ui")
 collectgarbage("setpause", 110)
 collectgarbage("setstepmul", 1000)
 
+F = {}
+
+require "ui.run_prompt"
+
 

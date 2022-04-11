@@ -76,10 +76,13 @@ local hourtextbox = wibox.widget.textclock("%H")
 hourtextbox.markup = helpers.colorize_text(hourtextbox.text, beautiful.xcolor5)
 hourtextbox.align = "center"
 hourtextbox.valign = "center"
+hourtextbox.font = beautiful.font_name .. "10"
+
 
 local minutetextbox = wibox.widget.textclock("%M")
 minutetextbox.align = "center"
 minutetextbox.valign = "center"
+minutetextbox.font = beautiful.font_name .. "10"
 
 hourtextbox:connect_signal("widget::redraw_needed", function()
     hourtextbox.markup = helpers.colorize_text(hourtextbox.text, beautiful.xcolor5)
@@ -96,13 +99,21 @@ end)
 
 local clock = wibox.widget {
     {
-        hourtextbox,
-        minutetextbox,
-        layout = wibox.layout.fixed.vertical
+        {    
+            hourtextbox,
+            minutetextbox,
+            layout = wibox.layout.fixed.vertical,
+        },
+        widget = wibox.container.margin, 
+        top = 8, 
+        bottom = 8,
     },
-    bg = beautiful.lighter_bg,
-    widget = wibox.container.background
-    
+    bg = beautiful.darker_bg,
+    widget = wibox.container.background,
+    shape = function(cr, width, height)
+        gears.shape.rounded_rect(cr, width, height, 5, 0)
+    end,
+
 }
 
 
@@ -173,7 +184,7 @@ local function boxed_widget2(widget)
         end,
         widget = wibox.container.background
     }
-    
+
     return boxed
 end
 
@@ -264,23 +275,10 @@ awful.screen.connect_for_each_screen(function(s)
                 },
                 {
                     require("ui.notifs.notif-center"),
-                    forced_height = dpi(320),
+                    forced_height = dpi(800),
                     widget = wibox.container.constraint
 
                 },
-                {
-
-                    {
-                        widget = wibox.widget.imagebox,
-                        image = beautiful.distro_image,
-                        forced_height = 200,
-                        halign = "center"
-                    },
-                    widget = wibox.container.margin,
-                    margins = 100
-
-                },
-                boxed_widget(wrap_widget2(require("ui.widgets.playerctl"))),
                 layout = wibox.layout.fixed.vertical,
                 spacing = 20
             },
@@ -420,15 +418,16 @@ awful.screen.connect_for_each_screen(function(s)
                     {
                         {
                             {
-                                boxed_widget({
-                                    wrap_widget({
-                                        boxed_widget2(clock),
-                                        layout = wibox.layout.fixed.vertical
-                                    }),
-                                    left = dpi(2),
-                                    right = dpi(2),
-                                    widget = wibox.container.margin
-                                }),
+                                -- boxed_widget({
+                                --     wrap_widget({
+                                --         boxed_widget2(clock),
+                                --         layout = wibox.layout.fixed.vertical
+                                --     }),
+                                --     left = dpi(2),
+                                --     right = dpi(2),
+                                --     widget = wibox.container.margin
+                                -- }),
+                                clock,
                                 spacing = 10,
                                 boxed_widget({
                                     layoutbox,

@@ -22,6 +22,9 @@ awful.mouse.append_global_mousebindings({
 
 -- Client and Tabs Bindings
 awful.keyboard.append_global_keybindings({
+    awful.key({ modkey }, "r", function()
+        F.run.open()
+      end, { description = "run command prompt", group = "awesome" }),
     awful.key({"Mod1"}, "a",
               function() bling.module.tabbed.pick_with_dmenu() end,
               {description = "pick client to add to tab group", group = "tabs"}),
@@ -58,12 +61,12 @@ awful.keyboard.append_global_keybindings({
 awful.keyboard.append_global_keybindings({
     -- Volume control
     awful.key({}, "XF86AudioRaiseVolume",
-              function() awful.spawn("amixer -D pulse set Master 5%+") end,
+              function() awful.spawn("pamixer -i 4") end,
               {description = "increase volume", group = "awesome"}),
     awful.key({}, "XF86AudioLowerVolume",
-              function() awful.spawn("amixer -D pulse set Master 5%-") end,
+              function() awful.spawn("pamixer -d 4") end,
               {description = "decrease volume", group = "awesome"}),
-    awful.key({}, "XF86AudioMute", function() awful.spawn("amixer -D pulse set Master 1+ toggle") end,
+    awful.key({}, "XF86AudioMute", function() awful.spawn("pamixer -t") end,
               {description = "mute volume", group = "awesome"}), -- Media Control
     awful.key({}, "XF86AudioPlay",
               function() awful.spawn("playerctl play-pause") end,

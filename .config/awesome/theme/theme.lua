@@ -121,8 +121,6 @@ theme.brightness_icon = gfs.get_configuration_dir() .. "icons/sun.svg"
 theme.battery_icon = gfs.get_configuration_dir() .. "icons/battery-three-quarters-solid.svg"
 theme.battery_icon = gears.color.recolor_image(theme.battery_icon, "#458588")
 
--- colors from .Xresources
---
 
 -- Fonts
 --
@@ -297,7 +295,6 @@ theme.wibar_spacing = dpi(15)
 theme.wibar_bg = theme.darker_bg
 theme.wibar_bg_secondary = theme.xbackground
 theme.wibar_position = "left"
--- theme.xcolor0 .. 55
 
 -- Systray
 --

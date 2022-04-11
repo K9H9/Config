@@ -1,5 +1,6 @@
 local awful = require("awful")
 local gears = require("gears")
+local naughty = require("naughty")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
@@ -26,22 +27,6 @@ awful.screen.connect_for_each_screen(function(s)
     s.mypopup1.widget = wibox.widget {
        {
             {
-              {
-                {
-                  {
-                      widget = require "ui.widgets.batterystatus",
-                  },
-                  margins = 20,
-                  widget = wibox.container.margin,
-                },
-                widget = wibox.container.background,
-                bg = beautiful.darker_bg,
-                shape = function(cr, width, height)
-                  gears.shape.rounded_rect(cr, width, height, 6)
-                end,
-                forced_height = 110,
-                forced_width = 75,
-              },
                 {
                   {
                     {
@@ -110,8 +95,10 @@ awful.screen.connect_for_each_screen(function(s)
     awesome.connect_signal("popup1::open", function()
         if s.mypopup1.y == 1180 then
             popup_timed.target = 1080 - (screen_height - dpi(500))
+            naughty.config.defaults.position = "bottom_middle"
         else
             popup_timed.target = 1180
+            naughty.config.defaults.position = "bottom_right"
         end
     end) 
 end)

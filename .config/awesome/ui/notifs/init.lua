@@ -30,6 +30,17 @@ naughty.config.defaults.timeout = 3
 naughty.config.defaults.title = "System Notification"
 naughty.config.defaults.position = "bottom_right"
 
+
+awesome.connect_signal("popup1::open", function() 
+    naughty.config.defaults.position = "bottom_middle"
+end)
+
+
+awesome.connect_signal("popup1::close", function() 
+    naughty.config.defaults.position = "bottom_right"
+end)
+
+
 -- Timeouts
 naughty.config.presets.low.timeout = 3
 naughty.config.presets.critical.timeout = 0

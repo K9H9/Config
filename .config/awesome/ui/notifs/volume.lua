@@ -12,14 +12,14 @@ local active_color_1 = {
     type = 'linear',
     from = {0, 0},
     to = {200, 50}, -- replace with w,h later
-    stops = {{0, beautiful.xcolor6}, {0.50, beautiful.xcolor1}}
+    stops = {{0, beautiful.xcolor6}, {0.50, beautiful.xcolor4}}
 }
 
 local volume_icon = wibox.widget {
-    markup = "<span foreground='" .. beautiful.xcolor1 .. "'><b> </b></span>",
+    markup = "<span foreground='" .. beautiful.xcolor4 .. "'><b></b></span>",
     align = 'center',
     valign = 'center',
-    font = beautiful.font_name .. '22',
+    font = beautiful.font_name .. '25',
     widget = wibox.widget.textbox
 }
 
@@ -32,11 +32,8 @@ local volume_adjust = awful.popup({
     widget = wibox.container.background,
     bg = "#00000000",
     placement = function(c)
-        awful.placement.right(c, {
-            margins = {
-                right = beautiful.useless_gap * 2
-            }
-        })
+        awful.placement
+            .right(c, {margins = {right = beautiful.useless_gap * 2}})
     end
 })
 
@@ -53,11 +50,7 @@ local volume_bar = wibox.widget {
 local volume_ratio = wibox.widget {
     layout = wibox.layout.ratio.vertical,
     {
-        {
-            volume_bar,
-            direction = "east",
-            widget = wibox.container.rotate
-        },
+        {volume_bar, direction = "east", widget = wibox.container.rotate},
         top = dpi(20),
         left = dpi(20),
         right = dpi(20),
@@ -71,9 +64,7 @@ volume_ratio:adjust_ratio(2, 0.72, 0.28, 0)
 
 volume_adjust.widget = wibox.widget {
     volume_ratio,
-    shape = function(cr, width, height)
-        gears.shape.rounded_rect(cr, width, height, 2.5)
-    end,
+    shape = helpers.rrect(beautiful.border_radius),
     bg = beautiful.xbackground,
     widget = wibox.container.background
 }
@@ -92,9 +83,11 @@ local hide_volume_adjust = gears.timer {
 awesome.connect_signal("signal::volume", function(vol, muted)
     volume_bar.value = vol
     if muted or vol == 0 then
-        volume_icon.markup = "<span foreground='" .. beautiful.xcolor1 .. "'><b>ﳌ</b></span>"
+        volume_icon.markup = "<span foreground='" .. beautiful.xcolor4 ..
+                                 "'><b>ﳌ</b></span>"
     else
-        volume_icon.markup = "<span foreground='" .. beautiful.xcolor1 .. "'><b></b></span>"
+        volume_icon.markup = "<span foreground='" .. beautiful.xcolor4 ..
+                                 "'><b></b></span>"
     end
 
     if volume_adjust.visible then

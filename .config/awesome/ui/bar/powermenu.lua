@@ -74,7 +74,7 @@ local bluetooth_text = wibox.widget{
 
 local bluetooth_dev = wibox.widget{
     markup = "Offline",
-    font = beautiful.font_name .. "bold 5",
+    font = beautiful.font_name .. "bold 11",
     valign = "bottom",
     widget = wibox.widget.textbox
 }
@@ -86,10 +86,9 @@ local bluetooth = wibox.widget{
     layout = wibox.layout.align.vertical
 }
 
--- awful.widget.watch("bt-device -l | tail -1 | cut -d "'' '' -f 1", 2, function(widget, stdout)
---         bluetooth_dev.markup = stdout
-
--- end)
+awful.widget.watch("/bin/sh -c $HOME/.config/awesome/signal/awesome_utils/bluetooth.sh", 1, function(widget, stdout)
+        bluetooth_dev.markup = stdout
+end)
 -- awesome.connect_signal("signal::bluetoothwork", function(dev)
 --     bluetooth_dev.markup = "online"
 -- end)
@@ -237,9 +236,9 @@ awful.screen.connect_for_each_screen(function(s)
             spacing = 8,
             forced_num_cols = 1,
             forced_num_rows = 4,
-            prompt_button(beautiful.shutdown, "/usr/lib/openrc/bin/reboot", beautiful.xcolor1),
+            prompt_button(beautiful.shutdown, "sudo shutdown -p now", beautiful.xcolor1),
             prompt_button(beautiful.logout, "awesome-client 'awesome.quit()'", beautiful.xcolor2),
-            prompt_button(beautiful.refresh_icon, "sudo reboot", beautiful.xcolor3),
+            prompt_button(beautiful.refresh_icon, "/usr/lib/openrc/bin/reboot", beautiful.xcolor3),
             execute_button(beautiful.lock, lock_screen_show, beautiful.xcolor4)
         }
        

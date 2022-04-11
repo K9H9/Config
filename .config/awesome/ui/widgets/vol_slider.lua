@@ -43,15 +43,17 @@ voltip:add_to_object(vol_slider)
 voltip.text = ""
 
 
-awesome.connect_signal("signal::volume", function(vol, muted)
+awful.widget.watch("pamixer --get-volume",1, function(vol)
   local value = vol or 0
   slider.value = vol
-  voltip.text = "Volume: " .. value .. "%" 
+  voltip.text = "Volume: " .. vol .. "%" 
 end)
+-- awesome.connect_signal("signal::volume", function(vol, muted)
+-- end)
 
 
 slider:connect_signal("property::value", function(_, value)
-  awful.spawn.with_shell("amixer sset Master " .. value .. "%")
+  awful.spawn.with_shell("pamixer --set-volume " .. value .. "%")
 end)
 
 return vol_slider

@@ -264,8 +264,4 @@ function M.make_prompt_widget(prompt, opts)
     forced_height = opts.forced_height or 500,
   }
 end
-local function get_permission()
-
-
-end
 return M

@@ -7,6 +7,7 @@ local dpi = xresources.apply_dpi
 local helpers = require("helpers")
 local rubato = require("module.rubato")
 local buttons = require "ui.buttons"
+local todo = require("ui.widgets.todow")
 
 
 local app_factory = function(icon, exec, margins)
@@ -46,6 +47,23 @@ local apps = wibox.widget {
   site_gmail,
   app_terminal,
   site_artix
+}
+
+
+local box_todo = wibox.widget {
+  {
+      {
+          todo,
+          top = dpi(9),
+          bottom = dpi(9),
+          left = dpi(10),
+          right = dpi(10),
+          widget = wibox.container.margin
+      },
+      widget = wibox.container.background,
+  },
+  margins = dpi(10),
+  widget = wibox.container.margin
 }
 
 local calendar = wibox.widget {
@@ -106,26 +124,44 @@ awful.screen.connect_for_each_screen(function(s)
               },
               {
                 {
-                  widget = wibox.container.background,
-                  bg = beautiful.darker_bg,
-                  shape = function(cr, width, height)
-                    gears.shape.rounded_rect(cr, width, height, 6)
-                  end,
-                  forced_height = 400,
-                  forced_width = 150,
+                  {
+                    box_todo,
+                    widget = wibox.container.background,
+                    bg = beautiful.darker_bg,
+                    shape = function(cr, width, height)
+                      gears.shape.rounded_rect(cr, width, height, 6)
+                    end,
+                    forced_height = 200,
+                    forced_width = 200,
+                  },
+                  spacing = 15,
+                  {
+                    widget = wibox.container.background,
+                    bg = beautiful.darker_bg,
+                    shape = function(cr, width, height)
+                      gears.shape.rounded_rect(cr, width, height, 6)
+                    end,
+                    forced_height = 200,
+                    forced_width = 200,
+                  },
+                  layout = wibox.layout.fixed.vertical,
                 },
                 spacing = 30,
                 {
-                  widget = wibox.container.background,
-                  bg = beautiful.darker_bg,
-                  shape = function(cr, width, height)
-                    gears.shape.rounded_rect(cr, width, height, 6)
-                  end,
-                  forced_height = 400,
-                  forced_width = 300,
+                  require("ui.widgets.playerctl"),
+                  spacing = 15,
+                  {
+                    widget = wibox.container.background,
+                    bg = beautiful.darker_bg,
+                    shape = function(cr, width, height)
+                      gears.shape.rounded_rect(cr, width, height, 6)
+                    end,
+                    forced_height = 200,
+                    forced_width = 250,
+                  },
+                  layout = wibox.layout.fixed.vertical,
                 },
                 layout = wibox.layout.fixed.horizontal,
-                widget = wibox.container.margin,
               },
               layout = wibox.layout.fixed.vertical,
               spacing = 20,
@@ -149,8 +185,49 @@ awful.screen.connect_for_each_screen(function(s)
     awesome.connect_signal("popup::open", function()
         if s.mypopup.y == -dpi(500) then
             popup_timed.target = 0 +dpi(25)
+            awesome.emit_signal("todo::open")
         else
             popup_timed.target = -dpi(500)
+            awesome.emit_signal("todo::close")
         end
-    end) 
+    end)
+    s.todo_tooltip = wibox{
+         type = "dock", 
+         ontop = true,
+         screen = screen.primary, 
+         x = 1920 - beautiful.panel_width - dpi(25) - dpi(25) - beautiful.panel_width,
+         y = dpi(25) ,
+         width = beautiful.panel_width,
+         height = 800,
+         visible = false,
+    }
+    
+    s.todo_tooltip.widget = wibox.widget {
+
+          {
+            {
+              {
+                  require("ui.todo.todocenter"),
+                  forced_height = 750,
+                  widget = wibox.container.constraint
+              },
+              widget = wibox.container.margin, 
+              margins = 15, 
+            },
+            layout = wibox.layout.fixed.vertical,
+          },
+          bg = beautiful.xbackground,
+          shape = function(cr, width, height)
+            gears.shape.rounded_rect(cr, width, height, 6)
+          end,
+          widget = wibox.container.background,
+    }
+    awesome.connect_signal("todo::open", function()
+        s.todo_tooltip.visible = true
+    end)
+
+    awesome.connect_signal("todo::close", function()
+      s.todo_tooltip.visible = false
+    end)
+    
 end)
