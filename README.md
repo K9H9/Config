@@ -20,10 +20,6 @@
 * Catppuccin
 ![Home-catppuccin](assets/home-catppuccin.png)
 ![Home-catppuccin](assets/home1-catppuccin.png)
-
-* Gruvbox
-![Home](assets/home.png)
-![Home](assets/home1.png)
 * Os: Artix Linux(openrc)
 * Wm: AwesomeWM
 * Shell: zsh
@@ -41,7 +37,7 @@ sudo pacman -S playerctl brightnessctl wezterm rofi flameshot lua53 luarocks pul
 ```
 ```shell
 # Change AUR-helper if needed
-yay -Sy picom-ibwaghan-git awesome-git inotify-tools alsa-utils alsa-tools wireless_tools jq checkupdates brave-bin nerd-font-complete iw --needed
+yay -Sy picom-ibwaghan-git awesome-git inotify-tools alsa-utils alsa-tools wireless_tools jq checkupdates brave-bin nerd-font-complete iw todo-bin --needed
 ```
 
 ## Installation
