@@ -25,7 +25,6 @@ ruled.client.connect_signal("request::rules", function()
         properties = {},
         callback = awful.client.setslave
     }
-    -- Music clients (usually a terminal running ncmpcpp)
     ruled.client.append_rule {
         rule_any = {
             class = {

@@ -81,7 +81,7 @@ local cal = wibox.widget {
 awful.screen.connect_for_each_screen(function(s)
     s.calendar = wibox({
         screen = screen.primary,
-        type = "dock",
+        type = "popup",
         ontop = true,
         x = beautiful.wibar_width + dpi(20),
         y = 1100,
@@ -98,10 +98,8 @@ awful.screen.connect_for_each_screen(function(s)
             margins = 10,
         },
         bg = beautiful.xbackground,
-        shape = function(cr, width, height)
-            gears.shape.rounded_rect(cr, width, height, 6)
-        end,
         widget = wibox.container.background,
+        
      }  
 
     local popup_timed = rubato.timed {

@@ -27,11 +27,15 @@ todobox.create = function(icon, title, message, bg, width)
                     {
                         {
                             {
-                                image = icon,
-                                resize = true,
-                                clip_shape = helpers.rrect(
-                                    beautiful.border_radius - 3),
-                                widget = wibox.widget.imagebox
+                                {
+                                    image = icon,
+                                    resize = true,
+                                    clip_shape = helpers.rrect(
+                                        beautiful.border_radius - 3),
+                                    widget = wibox.widget.imagebox
+                                },
+                                widget = wibox.container.margin,
+                                margins = 10,
                             },
                             -- bg = beautiful.xcolor1,
                             strategy = 'exact',
@@ -76,15 +80,15 @@ todobox.create = function(icon, title, message, bg, width)
                                     left = dpi(30),
                                     widget = wibox.container.margin
                                 },
-                                {
-                                    {
-                                        dismiss,
-                                        halign = "right",
-                                        widget = wibox.container.place
-                                    },
-                                    left = dpi(10),
-                                    widget = wibox.container.margin
-                                },
+                                -- {
+                                --     {
+                                --         dismiss,
+                                --         halign = "right",
+                                --         widget = wibox.container.place
+                                --     },
+                                --     left = dpi(10),
+                                --     widget = wibox.container.margin
+                                -- },
                                 layout = wibox.layout.fixed.horizontal
                             },
                             {

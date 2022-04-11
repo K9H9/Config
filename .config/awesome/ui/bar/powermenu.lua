@@ -244,7 +244,7 @@ awful.screen.connect_for_each_screen(function(s)
        
     s.powermenu = wibox({
         screen = screen.primary,
-        type = "dock",
+        type = "popup",
         ontop = true,
         x = -600,
         y = screen_height - dpi(208) - dpi(15),
@@ -276,9 +276,6 @@ awful.screen.connect_for_each_screen(function(s)
             margins = 15,
         },
         bg = beautiful.xbackground,
-        shape = function(cr, width, height)
-            gears.shape.rounded_rect(cr, width, height, 6)
-        end,
         widget = wibox.container.background,
      }
 
@@ -301,7 +298,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     s.prompt = wibox({
         screen = screen.primary,
-        type = "dock",
+        type = "popup",
         ontop = true,
         width = dpi(145*2),
         x = screen_width / 2 - dpi(145),
@@ -350,9 +347,6 @@ awful.screen.connect_for_each_screen(function(s)
             margins = 15,
         },
         bg = beautiful.xbackground,
-        shape = function(cr, width, height)
-            gears.shape.rounded_rect(cr, width, height, 6)
-        end,
         widget = wibox.container.background,
      }
 end)

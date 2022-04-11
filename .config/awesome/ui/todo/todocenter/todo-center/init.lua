@@ -29,7 +29,6 @@ remove_todobox = function(box)
     todobox_layout:remove_widgets(box)
 
     if #todobox_layout.children == 0 then
-        awesome.emit_signal("todo::close")
         todobox_layout:insert(1, empty_todobox)
         remove_todobox_empty = true
     end

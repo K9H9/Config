@@ -22,27 +22,6 @@ local todo_text = wibox.widget {
     widget = wibox.widget.textbox
 }
 
-todo_text:connect_signal("mouse::enter", function()
-    todo_text.markup = helpers.colorize_text("Show", beautiful.xcolor2)
-end)
-todo_text:connect_signal("mouse::leave", function()
-    todo_text.markup = helpers.colorize_text("Todo", beautiful.xcolor0)
-end)
-
--- awful.widget.watch("",1)
-
-local s = true
-todo_text:buttons {
-    awful.button({}, 1, function()
-        s = not s
-        if s then
-            awesome.emit_signal("todo::close")
-            awesome.emit_signal("todo::show")
-        else
-            awesome.emit_signal("todo::open")
-        end
-    end),
-}
 
 
 

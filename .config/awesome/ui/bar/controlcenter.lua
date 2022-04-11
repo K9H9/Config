@@ -15,7 +15,7 @@ local rubato = require("module.rubato")
 awful.screen.connect_for_each_screen(function(s)
   s.mypopup1 = wibox({
         screen = screen.primary,
-        type = "dock",
+        type = "popup",
         ontop = true,
         x = 1920 - (beautiful.panel_width) - dpi(25),
         y = 1180,
